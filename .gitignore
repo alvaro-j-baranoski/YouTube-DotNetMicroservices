@@ -1,4 +1,23 @@
-/.idea
+# Ignore build output folders
+**/bin/
+**/obj/
 
-/bin
-/obj
+# Ignore user-specific files
+*.user
+*.suo
+*.userprefs
+
+# Ignore NuGet packages and cache
+.nuget/
+packages/
+nuget.exe
+
+# Ignore IDE-specific files
+.vs/
+.idea/
+*.swp
+*.swo
+
+# Ignore local development files
+*.local
+*.log
