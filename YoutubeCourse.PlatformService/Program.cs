@@ -1,4 +1,9 @@
+using System;
+using System.Linq;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using YoutubeCourse.PlatformService.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
