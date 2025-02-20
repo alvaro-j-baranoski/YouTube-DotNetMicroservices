@@ -1,0 +1,6 @@
+@YoutubeCourse.CommandsService_HostAddress = http://localhost:5169
+
+GET {{YoutubeCourse.CommandsService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
