@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeCourse.PlatformService.Domain.Dtos;
+using YoutubeCourse.PlatformService.Domain.Interfaces;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Models;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Repositories.Interfaces;
 
@@ -10,24 +12,18 @@ namespace YoutubeCourse.PlatformService.Application.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PlatformsController : ControllerBase
+public class PlatformsController(
+    IPlatformRepository platformRepository, 
+    IMapper mapper, 
+    ICommandDataClientService commandDataClientService) : ControllerBase
 {
-    private readonly IPlatformRepository _platformRepository;
-    private readonly IMapper _mapper;
-
-    public PlatformsController(IPlatformRepository platformRepository, IMapper mapper)
-    {
-        _platformRepository = platformRepository;
-        _mapper = mapper;
-    }
-
     [HttpGet]
     public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
     {
         Console.WriteLine("[DEBUG] Getting all platforms");
         
-        var platforms = _platformRepository.GetAllPlatforms();
-        var result = _mapper.Map<IEnumerable<PlatformReadDto>>(platforms); 
+        var platforms = platformRepository.GetAllPlatforms();
+        var result = mapper.Map<IEnumerable<PlatformReadDto>>(platforms); 
         
         return Ok(result);
     }
@@ -37,28 +33,38 @@ public class PlatformsController : ControllerBase
     {
         Console.WriteLine("[DEBUG] Getting platform by id");
         
-        var platform = _platformRepository.GetPlatformById(id);
+        var platform = platformRepository.GetPlatformById(id);
 
         if (platform == null)
         {
             return NotFound();
         }
         
-        var result = _mapper.Map<PlatformReadDto>(platform);
+        var result = mapper.Map<PlatformReadDto>(platform);
         
         return Ok(result);
     }
 
     [HttpPost]
-    public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platformCreateDto)
+    public async Task<ActionResult<PlatformReadDto>> CreatePlatform(PlatformCreateDto platformCreateDto)
     {
         Console.WriteLine("[DEBUG] Creating platform");
         
-        var platformModel = _mapper.Map<Platform>(platformCreateDto);
-        _platformRepository.CreatePlatform(platformModel);
-        _platformRepository.SaveChanges();
+        var platformModel = mapper.Map<Platform>(platformCreateDto);
+        platformRepository.CreatePlatform(platformModel);
+        platformRepository.SaveChanges();
         
-        var result = _mapper.Map<PlatformReadDto>(platformModel);
+        var result = mapper.Map<PlatformReadDto>(platformModel);
+
+        try
+        {
+            await commandDataClientService.SendPlatformToCommand(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"[DEBUG] Could not send synchronously: {e}");
+            throw;
+        }
         
         return CreatedAtRoute(nameof(GetPlatformById), new { platformModel.Id }, result);
     }
