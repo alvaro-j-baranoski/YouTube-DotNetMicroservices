@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using YoutubeCourse.PlatformService.Domain.Interfaces;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Models;
-using YoutubeCourse.PlatformService.Infrastructure.Database.Repositories.Interfaces;
 
 namespace YoutubeCourse.PlatformService.Infrastructure.Database.Repositories;
 

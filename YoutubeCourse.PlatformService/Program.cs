@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using YoutubeCourse.PlatformService.Domain.Interfaces;
 using YoutubeCourse.PlatformService.Infrastructure.Database;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Repositories;
-using YoutubeCourse.PlatformService.Infrastructure.Database.Repositories.Interfaces;
 using YoutubeCourse.PlatformService.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);

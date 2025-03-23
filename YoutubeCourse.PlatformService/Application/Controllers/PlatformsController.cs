@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using YoutubeCourse.PlatformService.Domain.Dtos;
 using YoutubeCourse.PlatformService.Domain.Interfaces;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Models;
-using YoutubeCourse.PlatformService.Infrastructure.Database.Repositories.Interfaces;
 
 namespace YoutubeCourse.PlatformService.Application.Controllers;
 

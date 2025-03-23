@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using YoutubeCourse.PlatformService.Infrastructure.Database.Models;
 
-namespace YoutubeCourse.PlatformService.Infrastructure.Database.Repositories.Interfaces;
+namespace YoutubeCourse.PlatformService.Domain.Interfaces;
 
 public interface IPlatformRepository
 {
