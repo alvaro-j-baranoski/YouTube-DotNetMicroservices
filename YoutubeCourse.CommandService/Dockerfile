@@ -1,7 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-COPY YoutubeCourse.CommandsService.csproj ./
+COPY YoutubeCourse.CommandService.csproj ./
 RUN dotnet restore
 
 COPY . ./
@@ -14,4 +14,4 @@ COPY --from=build-env /app/out .
 EXPOSE 8080
 EXPOSE 8081
 
-ENTRYPOINT [ "dotnet", "YoutubeCourse.CommandsService.dll" ]
+ENTRYPOINT [ "dotnet", "YoutubeCourse.CommandService.dll" ]
