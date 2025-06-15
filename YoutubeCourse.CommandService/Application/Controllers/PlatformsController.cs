@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace YoutubeCourse.CommandsService.Application.Controllers;
+namespace YoutubeCourse.CommandService.Application.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

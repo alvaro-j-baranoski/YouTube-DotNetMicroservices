@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeCourse.PlatformService", "YoutubeCourse.PlatformService\YoutubeCourse.PlatformService.csproj", "{410F7CCA-91E3-45F5-BA61-665AAEAE33FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeCourse.CommandsService", "YoutubeCourse.CommandsService\YoutubeCourse.CommandsService.csproj", "{C5266745-332A-422B-A539-891C4645DF0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeCourse.CommandService", "YoutubeCourse.CommandService\YoutubeCourse.CommandService.csproj", "{C5266745-332A-422B-A539-891C4645DF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
