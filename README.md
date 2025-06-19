@@ -1,7 +1,7 @@
 # YouTube-DotNetMicroservices
 [Course] .NET Microservices follow-along code for [Les Jackson YouTube course](https://www.youtube.com/watch?v=DgVjEo3OGBI).
 
-I stopped at Adding API Gateway chapter.
+I stopped at Starting with SQL Server chapter.
 
 ## How to run
 To run the PlatformService from the docker file execute the following commands:
@@ -30,3 +30,16 @@ of the NodePort service when running ``kubectl get services``.
 In the tutorial, the instructor uses .NET 5, which uses port 80 for the ASP.NET
 service. In .NET 8, this port is now 8080, so keep that in mind when configuring
 the ports in Docker/K8S.
+
+## API Gateway
+This project uses ingress-nginx as the API gateway. To run it go to their 
+[documentation website](https://kubernetes.github.io/ingress-nginx/deploy/) and grab the ``kubectl apply`` script.
+
+To query deployments made by this script, we need to run ``kubectl get ... --namespace=ingress-nginx``.
+
+After that, its required to add the hostname, which was registered in the ingress-service.yaml file, in the hosts folder
+of your computer. In Windows this file is located at C:\Windows\System32\drivers\etc\hosts. Add this line to the file:
+
+``127.0.0.1 acme.com``
+
+After setting this up, we should be able to make a successful GET request to http://acme.com/api/platforms/.

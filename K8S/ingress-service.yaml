@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: acme.com
+      http:
+        paths:
+          - path: /api/platforms
+            pathType: Prefix
+            backend:
+              service:
+                # This is the name of the cluster IP in the platforms file
+                name: platforms-clusterip-srv
+                port:
+                  number: 8080
+                  
+          - path: /api/c/platforms
+            pathType: Prefix
+            backend:
+              service:
+                # This is the name of the cluster IP in the commands file
+                name: commands-clusterip-srv
+                port:
+                  number: 8080
