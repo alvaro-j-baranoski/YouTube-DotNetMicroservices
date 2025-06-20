@@ -9,8 +9,11 @@ kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.
 Write-Output "Ingress-nginx deployment finished"
  
 kubectl apply -f .\ingress-service.yaml 
+
 kubectl apply -f .\local-pvc.yaml 
 
 # This password is supposed to be set manually from the commandline, so that we don't have this stored in a file 
 $mssql_password = "pa55w0rd!"
 kubectl create secret generic mssql --from-literal=SA_PASSWORD=$mssql_password
+
+kubectl apply -f .\mssql-platforms-depl.yaml

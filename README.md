@@ -43,3 +43,7 @@ of your computer. In Windows this file is located at C:\Windows\System32\drivers
 ``127.0.0.1 acme.com``
 
 After setting this up, we should be able to make a successful GET request to http://acme.com/api/platforms/.
+
+## SQL Server
+This project comes with a SQL Server K8S deployment. After running the deploy script, we have access to the database
+at localhost port 1433, username is sa and the password is the one configured in the deploy script.
